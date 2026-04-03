@@ -12,4 +12,4 @@ RUN pnpm build
 
 EXPOSE 3000
 
-CMD ["node", "dist/src/server.js"]
+CMD ["sh", "-c", "node dist/scripts/run-migrations.js && node dist/src/server.js"]
