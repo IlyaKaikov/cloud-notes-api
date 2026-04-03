@@ -8,7 +8,10 @@ export const errorHandler = (
   _next: NextFunction,
 ): void => {
   void _next;
-  console.error(error);
+
+  if (process.env.NODE_ENV !== "test") {
+    console.error(error);
+  }
 
   if (error instanceof AppError) {
     res.status(error.statusCode).json({

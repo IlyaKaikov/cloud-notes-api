@@ -3,6 +3,7 @@ import {
   createSingleNote,
   getNotes,
   getSingleNote,
+  patchSingleNote,
   removeSingleNote,
   updateSingleNote,
 } from "../controllers/notes.controller";
@@ -13,6 +14,7 @@ router.get("/", getNotes);
 router.get("/:id", getSingleNote);
 router.post("/", createSingleNote);
 router.put("/:id", updateSingleNote);
+router.patch("/:id", patchSingleNote);
 router.delete("/:id", removeSingleNote);
 
 export default router;

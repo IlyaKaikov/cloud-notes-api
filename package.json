@@ -6,11 +6,15 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "format:check": "prettier . --check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "migrate": "ts-node-dev --transpile-only scripts/run-migrations.ts",
+    "migrate:once": "node -r dotenv/config dist/scripts/run-migrations.js"
   },
   "keywords": [],
   "author": "Ilya Kaikov",
@@ -31,12 +35,15 @@
     "@types/morgan": "^1.9.10",
     "@types/node": "^25.5.1",
     "@types/pg": "^8.20.0",
+    "@types/supertest": "^7.2.0",
     "eslint": "^10.1.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.4.0",
     "prettier": "^3.8.1",
+    "supertest": "^7.2.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^6.0.2",
-    "typescript-eslint": "^8.58.0"
+    "typescript-eslint": "^8.58.0",
+    "vitest": "^4.1.2"
   }
 }

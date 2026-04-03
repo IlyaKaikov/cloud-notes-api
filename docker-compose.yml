@@ -1,16 +1,36 @@
+version: "3.9"
+
 services:
-  postgres:
-    image: postgres:17
-    container_name: cloud-notes-postgres
+  db:
+    image: postgres:17-alpine
+    container_name: cloud-notes-db
     restart: unless-stopped
     environment:
+      POSTGRES_DB: cloud_notes
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: cloud_notes
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: cloud-notes-api
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      PORT: 3000
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: cloud_notes
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      CORS_ORIGIN: http://localhost:5173
+    ports:
+      - "3000:3000"
 
 volumes:
   postgres_data:
