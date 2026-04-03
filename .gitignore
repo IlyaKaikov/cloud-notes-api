@@ -137,3 +137,10 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+.dockerignore
+.prettierignore
+.prettierrc
+eslint.config.json
+pnpm-lock.yaml
+tsconfig.json
